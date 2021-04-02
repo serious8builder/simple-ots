@@ -10,4 +10,4 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 app.include_router(health.router, prefix='/check')
-app.include_router(ots.router, prefix='')
+app.include_router(ots.router, prefix='/ots')
