@@ -8,6 +8,7 @@ authors = ["RK <seriouse8builder@gmail.com>"]
 python = "^3.8"
 fastapi = "^0.63.0"
 SQLAlchemy = "^1.4.4"
+PyMySQL = "^1.0.2"
 
 [tool.poetry.dev-dependencies]
 uvicorn = "^0.13.4"
