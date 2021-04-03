@@ -9,6 +9,8 @@ dirname = os.path.dirname(os.path.realpath(__file__))
 SQLITE_DB = f'sqlite:///{dirname}/ots.db'
 SQLALCHEMY_DATABASE_URL = os.getenv('DATABASE_URL', SQLITE_DB)
 
+SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace('mysql', 'mysql+pymysql')
+
 connect_args = {}
 if SQLALCHEMY_DATABASE_URL.startswith('sqlite'):
     connect_args['check_same_thread'] = False
