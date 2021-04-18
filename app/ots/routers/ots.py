@@ -35,10 +35,10 @@ async def reveal_secret(path: str, db: Session = Depends(get_db)):
     return crud.reveal_secret(path, db)
 
 
-@router.post('/', response_model=schemas.Ots)
+@router.post('/')
 async def creat_ots(ots: schemas.OtsCreate, db: Session = Depends(get_db)):
-    ots = crud.create_ots(ots=ots, db=db)
-    return ots['path']
+    return crud.create_ots(ots=ots, db=db)
+
 
 
 @router.get('/debug')
