@@ -25,7 +25,7 @@ async def ots_service(request: Request):
     return service_spec
 
 
-@router.get('/{ots_id}')
+@router.get('/debug/{ots_id}')
 async def get_ots(ots_id: int, db: Session = Depends(get_db)):
     return crud.get_ots(ots_id, db)
 
@@ -38,4 +38,10 @@ async def reveal_secret(path: str, db: Session = Depends(get_db)):
 @router.post('/', response_model=schemas.Ots)
 async def creat_ots(ots: schemas.OtsCreate, db: Session = Depends(get_db)):
     ots = crud.create_ots(ots=ots, db=db)
-    return ots.urlpath
+    return ots['path']
+
+
+@router.get('/debug')
+async def show_all_ots(db: Session = Depends(get_db)):
+    ots = crud.show_all(db=db)
+    return ots

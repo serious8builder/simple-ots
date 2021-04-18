@@ -31,9 +31,21 @@ def create_ots(ots: schemas.OtsCreate, db: Session):
 
 def reveal_secret(path: str, db: Session):
     ots = db.query(models.Ots).filter(models.Ots.urlpath == path).first()
+    print('---->ots', path,  ots)
     secret = ots.content
     response = {
-        'seecret': secret
+        'secret': secret
     }
 
     return response
+
+def show_all(db: Session):
+    ots_list = db.query(models.Ots).all()
+    response = {
+        'secrets': [
+            {'content': ots.content, 'urlpath': ots.urlpath} for ots in ots_list
+        ]
+    }
+
+    return response
+
